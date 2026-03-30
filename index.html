@@ -235,7 +235,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        
         footer {
             text-align: center;
             padding: 20px;
@@ -257,7 +256,6 @@
             background: #ffebee !important;
         }
         
-        /* تحسينات للقسم الجديد */
         .event-analysis-item {
             margin-bottom: 25px;
         }
@@ -272,7 +270,6 @@
             resize: vertical;
         }
         
-        /* تصميم قسم مؤشرات القياس الجديد */
         .measurement-item {
             background: #f8fdff;
             border-radius: 12px;
@@ -310,17 +307,21 @@
             font-weight: normal;
             color: #555;
         }
-        
-        .measurement-notes {
-            margin-top: 10px;
+
+        .section-wide-notes {
+            background: #f8fdff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e0f7fa;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        
-        .measurement-notes textarea {
-            min-height: 80px;
+
+        .section-wide-notes textarea {
+            min-height: 100px;
             resize: vertical;
         }
         
-        /* قسم الأسئلة الخاصة بالرمز */
         .code-specific-section {
             display: none;
             background: #f0f9ff;
@@ -359,126 +360,16 @@
             text-align: center;
             font-size: 1.4rem;
         }
-        
-        
-        @media (max-width: 768px) {
-            .form-col {
-                flex: 0 0 100%;
-                margin-bottom: 15px;
-            }
-            
-            .time-input-group {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .time-input {
-                width: 100%;
-            }
-            
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .radio-group, .checkbox-group {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .measurement-options {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .submit-btn {
-                width: 100%;
-                padding: 16px;
-            }
-        }
-        
-        /* تحسينات للتقدم */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: #e0f7fa;
-            z-index: 1000;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: #0288d1;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: #0288d1;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 999;
-        }
-        
-        .scroll-top-btn.visible {
-            opacity: 1;
-        }
-                /* ألوان مخصصة حسب نوع الرمز */
-        .pink-theme .code-title {
-            background-color: #f06292; /* وردي */
-        }
 
-        .silver-theme .code-title {
-            background-color: #b0bec5; /* فضي */
-            color: black;
-        }
-
-        .yellow-theme .code-title {
-            background-color: #fdd835; /* أصفر */
-            color: black;
-        }
-
-        .gray-theme .code-title {
-            background-color: #9e9e9e;
-            color: white;
-        }
-
-        .black-theme .code-title {
-            background-color: #212121;
-            color: white;
-        }
-
-        .orange-theme .code-title {
-            background-color: #ff9800;
-            color: white;
-        }
-
-        .brown-theme .code-title {
-            background-color: #8d6e63;
-            color: white;
-        }
-
-        .red-theme .code-title {
-            background-color: #ff5252;
-            color: white;
-        }
-        .btn-container {
-            text-align: center;
-            margin-top: 40px;
-        }
+        .pink-theme .code-title { background-color: #f06292; }
+        .silver-theme .code-title { background-color: #b0bec5; color: black; }
+        .yellow-theme .code-title { background-color: #fdd835; color: black; }
+        .gray-theme .code-title { background-color: #9e9e9e; color: white; }
+        .black-theme .code-title { background-color: #212121; color: white; }
+        .orange-theme .code-title { background-color: #ff9800; color: white; }
+        .brown-theme .code-title { background-color: #8d6e63; color: white; }
+        .red-theme .code-title { background-color: #ff5252; color: white; }
+        .btn-container { text-align: center; margin-top: 40px; }
         
         .submit-btn {
             background: linear-gradient(90deg, #0288d1, #00bcd4);
@@ -502,15 +393,92 @@
             background: linear-gradient(90deg, #00bcd4, #0288d1);
         }
         
-        .submit-btn:active {
-            transform: translateY(1px);
+        .submit-btn:active { transform: translateY(1px); }
+        
+        @media (max-width: 768px) {
+            .form-col { flex: 0 0 100%; margin-bottom: 15px; }
+            .time-input-group { flex-direction: column; gap: 5px; }
+            .time-input { width: 100%; }
+            header h1 { font-size: 1.8rem; }
+            .radio-group, .checkbox-group { flex-direction: column; gap: 10px; }
+            .measurement-options { flex-direction: column; gap: 10px; }
+            .submit-btn { width: 100%; padding: 16px; }
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 28px;
+            background: #e0f7fa;
+            z-index: 1000;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(2, 136, 209, 0.12);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #0288d1;
+            width: 0%;
+            transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease, box-shadow 0.45s ease;
+            will-change: width;
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.25);
         }
 
+        .progress-bar.low {
+            background: linear-gradient(90deg, #e53935, #ef5350);
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2), 0 0 14px rgba(229, 57, 53, 0.18);
+        }
+
+        .progress-bar.medium {
+            background: linear-gradient(90deg, #f9a825, #fdd835);
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2), 0 0 14px rgba(249, 168, 37, 0.18);
+        }
+
+        .progress-bar.complete {
+            background: linear-gradient(90deg, #2e7d32, #43a047);
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2), 0 0 16px rgba(46, 125, 50, 0.2);
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #01579b;
+            z-index: 1001;
+            transition: color 0.35s ease, transform 0.35s ease;
+        }
+        
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #0288d1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+        
+        .scroll-top-btn.visible { opacity: 1; }
     </style>
 </head>
 <body>
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text" id="progressText">0%</div>
     </div>
     
     <div class="scroll-top-btn" id="scrollTopBtn">
@@ -716,7 +684,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="form-row">
                     <div class="form-col">
                         <div class="form-group">
@@ -798,34 +765,13 @@
                 <div class="form-group">
                     <label><i class="fas fa-broadcast-tower"></i> طريقة التواصل</label>
                     <div class="checkbox-group">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="راديو">
-                            راديو
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="برافو">
-                            برافو
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="جوال">
-                            جوال
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="خط ارضي">
-                            خط ارضي
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="ايميل">
-                            ايميل
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="خط ساخن">
-                            خط ساخن
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="communicationMethod" value="أخرى" id="otherCommunicationMethod">
-                            أخرى
-                        </label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="راديو">راديو</label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="برافو">برافو</label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="جوال">جوال</label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="خط ارضي">خط ارضي</label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="ايميل">ايميل</label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="خط ساخن">خط ساخن</label>
+                        <label class="checkbox-option"><input type="checkbox" name="communicationMethod" value="أخرى" id="otherCommunicationMethod">أخرى</label>
                     </div>
                     <div class="other-input" id="otherCommunicationMethodInput">
                         <input type="text" id="otherCommunicationMethodText" name="otherCommunicationMethodText" placeholder="يرجى تحديد طريقة التواصل">
@@ -835,26 +781,11 @@
                 <div class="form-group">
                     <label><i class="fas fa-clipboard-list"></i> طريقة تسجيل المعلومات والتحديثات الخاصة بالحدث</label>
                     <div class="checkbox-group">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="infoRecordingMethod" value="الكترونية">
-                            الكترونية
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="infoRecordingMethod" value="ورق ملاحظات">
-                            ورق ملاحظات
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="infoRecordingMethod" value="سبورة بيضاء">
-                            سبورة بيضاء
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="infoRecordingMethod" value="لم يتم التسجيل">
-                            لم يتم التسجيل
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="infoRecordingMethod" value="أخرى" id="otherRecordingMethod">
-                            أخرى
-                        </label>
+                        <label class="checkbox-option"><input type="checkbox" name="infoRecordingMethod" value="الكترونية">الكترونية</label>
+                        <label class="checkbox-option"><input type="checkbox" name="infoRecordingMethod" value="ورق ملاحظات">ورق ملاحظات</label>
+                        <label class="checkbox-option"><input type="checkbox" name="infoRecordingMethod" value="سبورة بيضاء">سبورة بيضاء</label>
+                        <label class="checkbox-option"><input type="checkbox" name="infoRecordingMethod" value="لم يتم التسجيل">لم يتم التسجيل</label>
+                        <label class="checkbox-option"><input type="checkbox" name="infoRecordingMethod" value="أخرى" id="otherRecordingMethod">أخرى</label>
                     </div>
                     <div class="other-input" id="otherRecordingMethodInput">
                         <input type="text" id="otherRecordingMethodText" name="otherRecordingMethodText" placeholder="يرجى تحديد طريقة التسجيل">
@@ -902,7 +833,6 @@
                     <i class="fas fa-chart-bar"></i> مؤشر قياس الفرضيات
                 </div>
                 
-                <!-- اختيار نوع الرمز في القسم السادس -->
                 <div class="form-group">
                     <label for="section6CodeType"><i class="fas fa-code"></i> نوع الرمز</label>
                     <select id="section6CodeType" name="section6CodeType" required>
@@ -919,573 +849,65 @@
                     </select>
                 </div>
                 
-                <!-- القسم العام لمؤشرات القياس -->
                 <div id="generalMeasurementSection">
-                    <!-- البند الأول -->
                     <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-user-tie"></i> 
-                            تعيين قائد يقوم بادارة الحدث وتوزيع المهام على المشاركين بالفرضية
-                        </div>
+                        <div class="measurement-question"><i class="fas fa-user-tie"></i> تعيين قائد يقوم بادارة الحدث وتوزيع المهام على المشاركين بالفرضية</div>
                         <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="leaderAppointed" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="leaderAppointed" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="leaderNotes" placeholder="ملاحظات حول تعيين القائد وتوزيع المهام"></textarea>
+                            <label><input type="radio" name="leaderAppointed" value="نعم" required> نعم</label>
+                            <label><input type="radio" name="leaderAppointed" value="لا" required> لا</label>
                         </div>
                     </div>
-                    
-                    <!-- البند الثاني -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-bullhorn"></i> 
-                            اتباع الية البلاغ الصحيحة
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="notificationProcedure" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="notificationProcedure" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="notificationNotes" placeholder="ملاحظات حول الية البلاغ"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند الثالث -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-hospital-alt"></i> 
-                            جاهزية المستشفى لحالات الطوارئ "البنية التحتية"
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="hospitalReadiness" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="hospitalReadiness" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="readinessNotes" placeholder="ملاحظات حول جاهزية البنية التحتية"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند الرابع -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-comments"></i> 
-                            التواصل مع الجهات الخارجية والتحديث المستمر معهم
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="externalCommunication" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="externalCommunication" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="communicationNotes" placeholder="ملاحظات حول التواصل مع الجهات الخارجية"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند الخامس -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-tags"></i> 
-                            وجود منطقة الفرز (الأولية، الثانوية) للحالات الموضحة بالألوان
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="triageArea" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="triageArea" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="triageNotes" placeholder="ملاحظات حول مناطق الفرز"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند السادس -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-id-card"></i> 
-                            استخدام بطاقات الفرز لتصنيف الحالات بشكل صحيح
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="triageCards" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="triageCards" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="cardsNotes" placeholder="ملاحظات حول استخدام بطاقات الفرز"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند السابع -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-user-shield"></i> 
-                            التزام الطاقم الطبي بارتداء معدات الوقاية الشخصية (PPE)
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="ppeCompliance" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="ppeCompliance" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="ppeNotes" placeholder="ملاحظات حول ارتداء معدات الوقاية"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند الثامن -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-users"></i> 
-                            حضور فريق الاستجابة السريعة (IRT)
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="irtPresence" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="irtPresence" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="irtNotes" placeholder="ملاحظات حول فريق الاستجابة السريعة"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند التاسع -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-user-shield"></i> 
-                            ارشاد وتوجيه المراجعين وتنظيم الدخول وخروج الاسعاف من قبل الامن
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="securityManagement" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="securityManagement" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="securityNotes" placeholder="ملاحظات حول دور الأمن في تنظيم الدخول والخروج"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند العاشر -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-route"></i> 
-                            تامين ممرات والمصاعد عند نقل المرضى
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="safePathways" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="safePathways" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="pathwaysNotes" placeholder="ملاحظات حول تأمين الممرات والمصاعد"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند الحادي عشر -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-ambulance"></i> 
-                            تواجد سيارات الاسعاف والتنسيق معهم عند الحاجة لنقل الحالات الى منشاة اخرى
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="ambulanceCoordination" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="ambulanceCoordination" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="ambulanceNotes" placeholder="ملاحظات حول سيارات الإسعاف والتنسيق"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- البند الثاني عشر -->
-                    <div class="measurement-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-map-marker-alt"></i> 
-                            توافر نقاط تجمع بالمنشاه
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="gatheringPoints" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="gatheringPoints" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="gatheringNotes" placeholder="ملاحظات حول نقاط التجمع"></textarea>
-                        </div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-bullhorn"></i> اتباع الية البلاغ الصحيحة</div><div class="measurement-options"><label><input type="radio" name="notificationProcedure" value="نعم" required> نعم</label><label><input type="radio" name="notificationProcedure" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-hospital-alt"></i> جاهزية المستشفى لحالات الطوارئ "البنية التحتية"</div><div class="measurement-options"><label><input type="radio" name="hospitalReadiness" value="نعم" required> نعم</label><label><input type="radio" name="hospitalReadiness" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-comments"></i> التواصل مع الجهات الخارجية والتحديث المستمر معهم</div><div class="measurement-options"><label><input type="radio" name="externalCommunication" value="نعم" required> نعم</label><label><input type="radio" name="externalCommunication" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-tags"></i> وجود منطقة الفرز (الأولية، الثانوية) للحالات الموضحة بالألوان</div><div class="measurement-options"><label><input type="radio" name="triageArea" value="نعم" required> نعم</label><label><input type="radio" name="triageArea" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-id-card"></i> استخدام بطاقات الفرز لتصنيف الحالات بشكل صحيح</div><div class="measurement-options"><label><input type="radio" name="triageCards" value="نعم" required> نعم</label><label><input type="radio" name="triageCards" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-user-shield"></i> التزام الطاقم الطبي بارتداء معدات الوقاية الشخصية (PPE)</div><div class="measurement-options"><label><input type="radio" name="ppeCompliance" value="نعم" required> نعم</label><label><input type="radio" name="ppeCompliance" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-users"></i> حضور فريق الاستجابة السريعة (IRT)</div><div class="measurement-options"><label><input type="radio" name="irtPresence" value="نعم" required> نعم</label><label><input type="radio" name="irtPresence" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-user-shield"></i> ارشاد وتوجيه المراجعين وتنظيم الدخول وخروج الاسعاف من قبل الامن</div><div class="measurement-options"><label><input type="radio" name="securityManagement" value="نعم" required> نعم</label><label><input type="radio" name="securityManagement" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-route"></i> تامين ممرات والمصاعد عند نقل المرضى</div><div class="measurement-options"><label><input type="radio" name="safePathways" value="نعم" required> نعم</label><label><input type="radio" name="safePathways" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-ambulance"></i> تواجد سيارات الاسعاف والتنسيق معهم عند الحاجة لنقل الحالات الى منشاة اخرى</div><div class="measurement-options"><label><input type="radio" name="ambulanceCoordination" value="نعم" required> نعم</label><label><input type="radio" name="ambulanceCoordination" value="لا" required> لا</label></div></div>
+                    <div class="measurement-item"><div class="measurement-question"><i class="fas fa-map-marker-alt"></i> توافر نقاط تجمع بالمنشاه</div><div class="measurement-options"><label><input type="radio" name="gatheringPoints" value="نعم" required> نعم</label><label><input type="radio" name="gatheringPoints" value="لا" required> لا</label></div></div>
+                    <div class="section-wide-notes">
+                        <label for="generalMeasurementNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على مؤشر قياس الفرضيات</label>
+                        <textarea id="generalMeasurementNotes" name="generalMeasurementNotes" placeholder="أضف ملاحظاتك العامة على جميع أسئلة مؤشر قياس الفرضيات"></textarea>
                     </div>
                 </div>
+                <div class="code-specific-section red-theme" id="redCodeSection">
+                    <div class="code-title"><i class="fas fa-fire"></i> تقييم رمز الاحمر</div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-fire-extinguisher"></i> استخدام طفايات الحريق اليدوية (PASS+RACE)</div><div class="measurement-options"><label><input type="radio" name="fireExtinguisher" value="نعم" required> نعم</label><label><input type="radio" name="fireExtinguisher" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-door-open"></i> وضع علامة على الابواب بعد الاخلاء الغرفة / المكتب / القسم</div><div class="measurement-options"><label><input type="radio" name="doorMarking" value="نعم" required> نعم</label><label><input type="radio" name="doorMarking" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-tools"></i> وجود ادوات مكافحة الحريق</div><div class="measurement-options"><label><input type="radio" name="fireTools" value="نعم" required> نعم</label><label><input type="radio" name="fireTools" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-bell"></i> وجود اجهزة انذار الحريق</div><div class="measurement-options"><label><input type="radio" name="fireAlarm" value="نعم" required> نعم</label><label><input type="radio" name="fireAlarm" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-exit"></i> وجود مخارج ابواب البطوارئ</div><div class="measurement-options"><label><input type="radio" name="emergencyExits" value="نعم" required> نعم</label><label><input type="radio" name="emergencyExits" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-walking"></i> خلو كافة مسالك الهروب من العوائق</div><div class="measurement-options"><label><input type="radio" name="escapeRoutes" value="نعم" required> نعم</label><label><input type="radio" name="escapeRoutes" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-sign"></i> وجود لوحات ارشادية التي تسهل من عمليات الاخلاء</div><div class="measurement-options"><label><input type="radio" name="signage" value="نعم" required> نعم</label><label><input type="radio" name="signage" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-wind"></i> اغلاق مصادر تيار الهواء (النوافذ,المكيفات , الشفاطات الهوائية)</div><div class="measurement-options"><label><input type="radio" name="airSources" value="نعم" required> نعم</label><label><input type="radio" name="airSources" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-plug"></i> اغلاق مصدر التيار الكهربائي</div><div class="measurement-options"><label><input type="radio" name="powerOff" value="نعم" required> نعم</label><label><input type="radio" name="powerOff" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-door-closed"></i> وجود ابواب مقاومة للنار</div><div class="measurement-options"><label><input type="radio" name="fireDoors" value="نعم" required> نعم</label><label><input type="radio" name="fireDoors" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-fan"></i> مجرى المكيفات مزود ب لسان عازل عن الدخان</div><div class="measurement-options"><label><input type="radio" name="acSmokeDamper" value="نعم" required> نعم</label><label><input type="radio" name="acSmokeDamper" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-tint"></i> وضع قطعة قماش مبللة تحت الابواب</div><div class="measurement-options"><label><input type="radio" name="wetCloth" value="نعم" required> نعم</label><label><input type="radio" name="wetCloth" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-volume-up"></i> صوت السماعات في الاقسام والممرات مسموع بشكل واضح</div><div class="measurement-options"><label><input type="radio" name="speakersAudible" value="نعم" required> نعم</label><label><input type="radio" name="speakersAudible" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-lightbulb"></i> مخرج الطوارئ مضاء</div><div class="measurement-options"><label><input type="radio" name="exitLight" value="نعم" required> نعم</label><label><input type="radio" name="exitLight" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-map-marker-alt"></i> مخرج الطوارئ مزود برقم الطابق</div><div class="measurement-options"><label><input type="radio" name="exitFloorNumber" value="نعم" required> نعم</label><label><input type="radio" name="exitFloorNumber" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-elevator"></i> منع استخدام المصاعد</div><div class="measurement-options"><label><input type="radio" name="elevatorBan" value="نعم" required> نعم</label><label><input type="radio" name="elevatorBan" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-user-slash"></i> منع دخول الغير معنيين بالحدث</div><div class="measurement-options"><label><input type="radio" name="unauthorizedBan" value="نعم" required> نعم</label><label><input type="radio" name="unauthorizedBan" value="لا" required> لا</label></div></div>
+                    <div class="code-specific-item"><div class="measurement-question"><i class="fas fa-camera"></i> منع التجمهر والتصوير</div><div class="measurement-options"><label><input type="radio" name="crowdControl" value="نعم" required> نعم</label><label><input type="radio" name="crowdControl" value="لا" required> لا</label></div></div>
+                    <div class="section-wide-notes">
+                        <label for="redCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الأحمر</label>
+                        <textarea id="redCodeNotes" name="redCodeNotes" placeholder="أضف ملاحظاتك العامة على جميع أسئلة الرمز الأحمر"></textarea>
+                    </div>
+                </div>
+
+                <div class="code-specific-section pink-theme" id="pinkCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الوردي</div><div class="section-wide-notes"><label for="pinkCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الوردي</label><textarea id="pinkCodeNotes" name="pinkCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section silver-theme" id="silverWhiteCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الفضي/الابيض</div><div class="section-wide-notes"><label for="silverWhiteCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الفضي/الأبيض</label><textarea id="silverWhiteCodeNotes" name="silverWhiteCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section yellow-theme" id="yellowInjuryCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الأصفر (إصابات متعددة)</div><div class="section-wide-notes"><label for="yellowInjuryCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الأصفر (إصابات متعددة)</label><textarea id="yellowInjuryCodeNotes" name="yellowInjuryCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section yellow-theme" id="yellowInfectionCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الأصفر (ألامراض معدية)</div><div class="section-wide-notes"><label for="yellowInfectionCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الأصفر (أمراض معدية)</label><textarea id="yellowInfectionCodeNotes" name="yellowInfectionCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section gray-theme" id="grayCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الرمادي</div><div class="section-wide-notes"><label for="grayCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الرمادي</label><textarea id="grayCodeNotes" name="grayCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section black-theme" id="blackCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الأسود</div><div class="section-wide-notes"><label for="blackCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز الأسود</label><textarea id="blackCodeNotes" name="blackCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section orange-theme" id="orangeCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز البرتقالي</div><div class="section-wide-notes"><label for="orangeCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز البرتقالي</label><textarea id="orangeCodeNotes" name="orangeCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
+                <div class="code-specific-section brown-theme" id="brownCodeSection"><div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز البني</div><div class="section-wide-notes"><label for="brownCodeNotes"><i class="fas fa-sticky-note"></i> ملاحظات عامة على تقييم الرمز البني</label><textarea id="brownCodeNotes" name="brownCodeNotes" placeholder="أضف ملاحظاتك العامة"></textarea></div></div>
                 
-                <!-- قسم الأسئلة الخاصة بالرمز الأحمر -->
-                <div class="code-specific-section" id="redCodeSection">
-                    <div class="code-title">
-                        <i class="fas fa-fire"></i> تقييم رمز الاحمر
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-fire-extinguisher"></i> 
-                            استخدام طفايات الحريق اليدوية (PASS+RACE)
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="fireExtinguisher" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="fireExtinguisher" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="fireExtinguisherNotes" placeholder="ملاحظات حول استخدام طفايات الحريق"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-door-open"></i> 
-                            وضع علامة على الابواب بعد الاخلاء الغرفة / المكتب / القسم
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="doorMarking" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="doorMarking" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-tools"></i> 
-                            وجود ادوات مكافحة الحريق
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="fireTools" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="fireTools" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="fireToolsNotes" placeholder="ملاحظات حول أدوات مكافحة الحريق"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-bell"></i> 
-                            وجود اجهزة انذار الحريق
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="fireAlarm" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="fireAlarm" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-exit"></i> 
-                            وجود مخارج ابواب البطوارئ
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="emergencyExits" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="emergencyExits" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-walking"></i> 
-                            خلو كافة مسالك الهروب من العوائق
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="escapeRoutes" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="escapeRoutes" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-sign"></i> 
-                            وجود لوحات ارشادية التي تسهل من عمليات الاخلاء
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="signage" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="signage" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="signageNotes" placeholder="ملاحظات حول اللوحات الإرشادية"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-wind"></i> 
-                            اغلاق مصادر تيار الهواء (النوافذ,المكيفات , الشفاطات الهوائية)
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="airSources" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="airSources" value="لا" required> لا
-                            </label>
-                        </div>
-                        <div class="measurement-notes">
-                            <textarea name="airSourcesNotes" placeholder="ملاحظات حول مصادر الهواء"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-plug"></i> 
-                            اغلاق مصدر التيار الكهربائي
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="powerOff" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="powerOff" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-door-closed"></i> 
-                            وجود ابواب مقاومة للنار
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="fireDoors" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="fireDoors" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-fan"></i> 
-                            مجرى المكيفات مزود ب لسان عازل عن الدخان
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="acSmokeDamper" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="acSmokeDamper" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-tint"></i> 
-                            وضع قطعة قماش مبللة تحت الابواب
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="wetCloth" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="wetCloth" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-volume-up"></i> 
-                            صوت السماعات في الاقسام والممرات مسموع بشكل واضح
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="speakersAudible" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="speakersAudible" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-lightbulb"></i> 
-                            مخرج الطوارئ مضاء
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="exitLight" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="exitLight" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-map-marker-alt"></i> 
-                            مخرج الطوارئ مزود برقم الطابق
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="exitFloorNumber" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="exitFloorNumber" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-elevator"></i> 
-                            منع استخدام المصاعد
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="elevatorBan" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="elevatorBan" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-user-slash"></i> 
-                            منع دخول الغير معنيين بالحدث
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="unauthorizedBan" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="unauthorizedBan" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="code-specific-item">
-                        <div class="measurement-question">
-                            <i class="fas fa-camera"></i> 
-                            منع التجمهر والتصوير
-                        </div>
-                        <div class="measurement-options">
-                            <label>
-                                <input type="radio" name="crowdControl" value="نعم" required> نعم
-                            </label>
-                            <label>
-                                <input type="radio" name="crowdControl" value="لا" required> لا
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
-                        <!-- قسم الرمز الوردي -->
-                <div class="code-specific-section pink-theme" id="pinkCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الوردي</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز الفضي/الابيض -->
-                <div class="code-specific-section silver-theme" id="silverWhiteCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الفضي/الابيض</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز الاصفر (اصابات متعددة) -->
-                <div class="code-specific-section yellow-theme" id="yellowInjuryCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الأصفر (إصابات متعددة)</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز الاصفر (امراض معدية) -->
-                <div class="code-specific-section yellow-theme" id="yellowInfectionCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الأصفر (ألامراض معدية)</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز الرمادي -->
-                <div class="code-specific-section gray-theme" id="grayCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الرمادي</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز الاسود -->
-                <div class="code-specific-section black-theme" id="blackCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز الأسود</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز البرتقالي -->
-                <div class="code-specific-section orange-theme" id="orangeCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز البرتقالي</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
-
-                <!-- قسم الرمز البني -->
-                <div class="code-specific-section brown-theme" id="brownCodeSection">
-                    <div class="code-title"><i class="fas fa-tasks"></i> تقييم رمز البني</div>
-                    <!-- أضف أسئلتك هنا -->
-                </div>
                 <div class="btn-container">
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-paper-plane"></i> إرسال التقييم
@@ -1494,7 +916,6 @@
             </form>
         </div>
 
-        
         <footer>
             <p>© 2025 نظام تقييم الفرضية - تابع لتجمع الشرقية الصحي</p>
             <p> جميع الحقوق محفوظة - تم التطوير بواسطة سعاد مرزا</p>
@@ -1502,19 +923,15 @@
     </div>
 
     <script>
-        // تعيين التاريخ الحالي تلقائياً
         function setCurrentDate() {
             const now = new Date();
             document.getElementById('year').value = now.getFullYear();
             document.getElementById('month').value = now.getMonth() + 1;
             document.getElementById('day').value = now.getDate();
-            
-            // تعيين يوم الأسبوع
             const weekdays = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
             document.getElementById('weekday').value = weekdays[now.getDay()];
         }
         
-        // إظهار/إخفاء حقل "أخرى" عند تغيير اختيار نوع التدريب
         const trainingTypeRadios = document.querySelectorAll('input[name="trainingType"]');
         trainingTypeRadios.forEach(radio => {
             radio.addEventListener('change', function() {
@@ -1527,27 +944,14 @@
             });
         });
         
-        // إظهار/إخفاء حقل "أخرى" لطريقة التواصل
         document.getElementById('otherCommunicationMethod').addEventListener('change', function() {
-            const otherInput = document.getElementById('otherCommunicationMethodInput');
-            if (this.checked) {
-                otherInput.classList.add('show');
-            } else {
-                otherInput.classList.remove('show');
-            }
+            document.getElementById('otherCommunicationMethodInput').classList.toggle('show', this.checked);
         });
         
-        // إظهار/إخفاء حقل "أخرى" لطريقة التسجيل
         document.getElementById('otherRecordingMethod').addEventListener('change', function() {
-            const otherInput = document.getElementById('otherRecordingMethodInput');
-            if (this.checked) {
-                otherInput.classList.add('show');
-            } else {
-                otherInput.classList.remove('show');
-            }
+            document.getElementById('otherRecordingMethodInput').classList.toggle('show', this.checked);
         });
         
-        // التحقق من صحة الوقت
         function validateTime(input, isHour = true) {
             const value = parseInt(input.value);
             const errorId = input.id + 'Error';
@@ -1581,7 +985,6 @@
             return true;
         }
         
-        // إضافة مستمعات الأحداث لحقول الوقت
         const timeInputs = [
             {id: 'plannedStartHour', isHour: true},
             {id: 'plannedStartMinute', isHour: false},
@@ -1603,39 +1006,71 @@
             });
         });
         
-        // التحقق من جميع الأوقات
         function validateAllTimes() {
             let isValid = true;
-            
             timeInputs.forEach(input => {
                 const element = document.getElementById(input.id);
-                if (!validateTime(element, input.isHour)) {
-                    isValid = false;
-                }
+                if (!validateTime(element, input.isHour)) isValid = false;
             });
-            
             return isValid;
         }
-        
-        // إظهار/إخفاء قسم الأسئلة الخاصة بالرمز الأحمر
-        document.getElementById('codeType')
-                    // إظهار/إخفاء قسم الأسئلة الخاصة بالرمز الأحمر في القسم السادس
-        document.getElementById('section6CodeType').addEventListener('change', function() {
-            // أول شي نخفي كل الأقسام
-            Object.values(codeSectionMap).forEach(id => {
-                const section = document.getElementById(id);
-                if (section) section.classList.remove('show');
+
+        function isElementVisible(element) {
+            return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
+        }
+
+        function getCompletionStats() {
+            const form = document.getElementById('surveyForm');
+            const processedRadioNames = new Set();
+            let total = 0;
+            let completed = 0;
+
+            const requiredFields = Array.from(form.querySelectorAll('[required]')).filter(field => {
+                const fieldName = `${field.name || ''} ${field.id || ''}`.toLowerCase();
+                const isNotesField = fieldName.includes('notes') || field.closest('.section-wide-notes');
+                if (isNotesField) return false;
+                return isElementVisible(field);
             });
 
-            // بعدين نعرض القسم المختار
-            const selectedSectionId = codeSectionMap[this.value];
-            if (selectedSectionId) {
-                const selectedSection = document.getElementById(selectedSectionId);
-                if (selectedSection) selectedSection.classList.add('show');
-            }
-        });
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    if (processedRadioNames.has(field.name)) return;
+                    processedRadioNames.add(field.name);
+                    total += 1;
 
-                const codeSectionMap = {
+                    const radioGroup = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`))
+                        .filter(isElementVisible);
+                    if (radioGroup.some(radio => radio.checked)) completed += 1;
+                    return;
+                }
+
+                total += 1;
+                if (field.value.trim() !== '') completed += 1;
+            });
+
+            const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+            return { total, completed, percentage };
+        }
+
+        function updateCompletionProgress() {
+            const { percentage } = getCompletionStats();
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.classList.remove('low', 'medium', 'complete');
+
+            if (percentage === 100) {
+                progressBar.classList.add('complete');
+            } else if (percentage >= 50) {
+                progressBar.classList.add('medium');
+            } else {
+                progressBar.classList.add('low');
+            }
+
+            document.getElementById('progressText').textContent = percentage + '%';
+            return percentage;
+        }
+
+        const codeSectionMap = {
             'الرمز الاحمر': 'redCodeSection',
             'الرمز الوردي': 'pinkCodeSection',
             'الرمز الفضي/الابيض': 'silverWhiteCodeSection',
@@ -1647,69 +1082,60 @@
             'الرمز البني': 'brownCodeSection'
         };
 
-        document.getElementById('section6CodeType').addEventListener('change', function () {
-            // إخفاء جميع أقسام الرموز
+        document.getElementById('section6CodeType').addEventListener('change', function() {
             Object.values(codeSectionMap).forEach(id => {
                 const section = document.getElementById(id);
                 if (section) section.classList.remove('show');
             });
 
-            // عرض القسم المختار فقط
-            const selectedCode = this.value;
-            const sectionId = codeSectionMap[selectedCode];
-            if (sectionId && document.getElementById(sectionId)) {
-                document.getElementById(sectionId).classList.add('show');
+            const selectedSectionId = codeSectionMap[this.value];
+            if (selectedSectionId) {
+                const selectedSection = document.getElementById(selectedSectionId);
+                if (selectedSection) selectedSection.classList.add('show');
             }
+            updateCompletionProgress();
         });
 
-        
-        // معالجة إرسال النموذج
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // التحقق من صحة الأوقات
             if (!validateAllTimes()) {
                 alert('يرجى تصحيح الأخطاء في قسم تسجيل الوقت');
                 return;
             }
-            
-            // عرض رسالة تأكيد
+            const completionPercentage = updateCompletionProgress();
+            if (completionPercentage < 100) {
+                alert(`لم يكتمل التقييم بعد. نسبة الاكتمال الحالية هي ${completionPercentage}%، ويجب إكمال 100% قبل الإرسال.`);
+                return;
+            }
             alert('تم إرسال تقييم الفرضية بنجاح!\nالبيانات أرسلت إلى بريدك الإلكتروني');
-            
-            // إعادة تعيين النموذج
             this.reset();
             document.getElementById('otherTrainingInput').classList.remove('show');
             document.getElementById('otherCommunicationMethodInput').classList.remove('show');
             document.getElementById('otherRecordingMethodInput').classList.remove('show');
-            document.getElementById('redCodeSection').classList.remove('show');
-            setCurrentDate(); // إعادة تعيين التاريخ بعد الإرسال
+            Object.values(codeSectionMap).forEach(id => {
+                const section = document.getElementById(id);
+                if (section) section.classList.remove('show');
+            });
+            setCurrentDate();
+            updateCompletionProgress();
         });
         
-        // تعيين التاريخ عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', setCurrentDate);
+        document.addEventListener('DOMContentLoaded', function() {
+            setCurrentDate();
+            updateCompletionProgress();
+            document.getElementById('surveyForm').addEventListener('input', updateCompletionProgress);
+            document.getElementById('surveyForm').addEventListener('change', updateCompletionProgress);
+        });
         
-        // شريط التقدم
         window.addEventListener('scroll', function() {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = (scrollTop / scrollHeight) * 100;
-            document.getElementById('progressBar').style.width = scrollPercent + '%';
-            
-            // زر التمرير للأعلى
             const scrollTopBtn = document.getElementById('scrollTopBtn');
-            if (scrollTop > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+            if (scrollTop > 300) scrollTopBtn.classList.add('visible');
+            else scrollTopBtn.classList.remove('visible');
         });
         
-        // التمرير للأعلى عند النقر على الزر
         document.getElementById('scrollTopBtn').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
