@@ -377,6 +377,8 @@
             gap: 8px;
             font-weight: normal;
             color: #555;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
         .measurement-options input[type="radio"] {
@@ -486,10 +488,16 @@
             .radio-group, .checkbox-group { flex-direction: column; gap: 10px; }
             .measurement-options { flex-direction: column; gap: 10px; }
             .measurement-options label {
-                justify-content: flex-start;
+                justify-content: flex-end;
+                flex-direction: row-reverse;
                 width: 100%;
                 text-align: right;
+                padding: 12px 14px;
+                border: 1px solid #dceff6;
+                border-radius: 12px;
+                background: #ffffff;
             }
+            .measurement-options input[type="radio"] { margin: 0; }
             .submit-btn, .secondary-btn { width: 100%; padding: 16px; }
             .btn-container {
                 position: sticky;
@@ -1774,17 +1782,7 @@
 
         function printReportPreview() {
             const reportHtml = buildReportHtml();
-            const iframe = document.createElement('iframe');
-            iframe.style.position = 'fixed';
-            iframe.style.left = '-9999px';
-            iframe.style.width = '0';
-            iframe.style.height = '0';
-            iframe.style.border = '0';
-            document.body.appendChild(iframe);
-
-            const doc = iframe.contentWindow.document;
-            doc.open();
-            doc.write(`
+            const printDocument = `
                 <!DOCTYPE html>
                 <html lang="ar" dir="rtl">
                 <head>
@@ -1814,7 +1812,33 @@
                     <div class="report-card">${reportHtml}</div>
                 </body>
                 </html>
-            `);
+            `;
+
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            if (isMobile) {
+                const mobilePrintWindow = window.open('', '_blank');
+                if (!mobilePrintWindow) {
+                    alert('تعذر فتح صفحة الطباعة على الجوال. تأكد من السماح بالنوافذ المنبثقة.');
+                    return;
+                }
+                mobilePrintWindow.document.open();
+                mobilePrintWindow.document.write(printDocument);
+                mobilePrintWindow.document.close();
+                alert('تم فتح التقرير في صفحة جديدة. من قائمة المتصفح اختر طباعة أو مشاركة ثم حفظ PDF.');
+                return;
+            }
+
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.left = '-9999px';
+            iframe.style.width = '0';
+            iframe.style.height = '0';
+            iframe.style.border = '0';
+            document.body.appendChild(iframe);
+
+            const doc = iframe.contentWindow.document;
+            doc.open();
+            doc.write(printDocument);
             doc.close();
 
             iframe.onload = function() {
