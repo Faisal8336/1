@@ -83,6 +83,77 @@
         .form-container {
             padding: 30px;
         }
+
+        .insights-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #ffffff, #f2fbff);
+            border: 1px solid #d5eef6;
+            border-radius: 16px;
+            padding: 16px 18px;
+            box-shadow: 0 8px 18px rgba(2, 136, 209, 0.08);
+        }
+
+        .insight-card strong {
+            display: block;
+            color: #01579b;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .insight-card span {
+            color: #607d8b;
+            font-size: 0.92rem;
+        }
+
+        .section-progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .section-progress-card {
+            background: #fff;
+            border: 1px solid #dff3f8;
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+        }
+
+        .section-progress-card h3 {
+            font-size: 0.95rem;
+            color: #01579b;
+            margin-bottom: 10px;
+        }
+
+        .section-progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            color: #607d8b;
+            margin-bottom: 8px;
+        }
+
+        .section-progress-track {
+            height: 10px;
+            border-radius: 999px;
+            background: #e9f7fb;
+            overflow: hidden;
+        }
+
+        .section-progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #29b6f6, #0288d1);
+            transition: width 0.45s ease;
+        }
         
         .section-title {
             background: #0288d1;
@@ -369,6 +440,14 @@
         .orange-theme .code-title { background-color: #ff9800; color: white; }
         .brown-theme .code-title { background-color: #8d6e63; color: white; }
         .red-theme .code-title { background-color: #ff5252; color: white; }
+        .red-theme { border-color: #ff8a80; background: linear-gradient(180deg, #fff5f5, #fefefe); }
+        .pink-theme { border-color: #f8a8c6; background: linear-gradient(180deg, #fff3f8, #fefefe); }
+        .silver-theme { border-color: #cfd8dc; background: linear-gradient(180deg, #f6f9fa, #ffffff); }
+        .yellow-theme { border-color: #f6d54a; background: linear-gradient(180deg, #fffbe7, #fffef8); }
+        .gray-theme { border-color: #b0bec5; background: linear-gradient(180deg, #f6f7f8, #ffffff); }
+        .black-theme { border-color: #424242; background: linear-gradient(180deg, #f6f6f6, #ffffff); }
+        .orange-theme { border-color: #ffb74d; background: linear-gradient(180deg, #fff5e8, #fffdf9); }
+        .brown-theme { border-color: #bcaaa4; background: linear-gradient(180deg, #f8f2ef, #ffffff); }
         .btn-container { text-align: center; margin-top: 40px; }
         
         .submit-btn {
@@ -402,7 +481,14 @@
             header h1 { font-size: 1.8rem; }
             .radio-group, .checkbox-group { flex-direction: column; gap: 10px; }
             .measurement-options { flex-direction: column; gap: 10px; }
-            .submit-btn { width: 100%; padding: 16px; }
+            .submit-btn, .secondary-btn { width: 100%; padding: 16px; }
+            .btn-container {
+                position: sticky;
+                bottom: 0;
+                background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.96) 35%);
+                padding-top: 12px;
+                z-index: 10;
+            }
         }
         
         .progress-container {
@@ -473,6 +559,171 @@
         }
         
         .scroll-top-btn.visible { opacity: 1; }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(14, 30, 37, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .review-modal {
+            width: min(760px, 100%);
+            max-height: 88vh;
+            overflow: auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .review-modal h2 {
+            color: #01579b;
+            margin-bottom: 8px;
+        }
+
+        .review-modal p {
+            color: #546e7a;
+            margin-bottom: 18px;
+        }
+
+        .review-list {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .report-preview-wrap {
+            background: linear-gradient(180deg, #f6fcff, #eef8fc);
+            border: 1px solid #d9edf5;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+
+        .report-preview-wrap h3 {
+            color: #01579b;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .report-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #dceff6;
+            overflow: hidden;
+        }
+
+        .report-card-header {
+            background: linear-gradient(135deg, #0288d1, #039be5);
+            color: white;
+            padding: 24px;
+        }
+
+        .report-card-header h2 {
+            margin: 0 0 6px;
+            font-size: 1.6rem;
+        }
+
+        .report-card-header p {
+            margin: 0;
+            color: #e8f7ff;
+        }
+
+        .report-section {
+            padding: 18px 20px;
+            border-top: 1px solid #edf5f8;
+        }
+
+        .report-section h4 {
+            color: #ffffff;
+            background: linear-gradient(90deg, #0277bd, #039be5);
+            margin-bottom: 14px;
+            font-size: 1rem;
+            padding: 10px 14px;
+            border-radius: 12px;
+            box-shadow: 0 6px 14px rgba(2, 119, 189, 0.18);
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .report-field {
+            background: #f8fcfe;
+            border: 1px solid #e3f1f6;
+            border-radius: 14px;
+            padding: 12px 14px;
+        }
+
+        .report-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .report-field strong {
+            display: block;
+            color: #0288d1;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .report-field span {
+            color: #263238;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.7;
+        }
+
+        .review-item {
+            background: #f8fdff;
+            border: 1px solid #dceff6;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .review-item strong {
+            display: block;
+            color: #0288d1;
+            margin-bottom: 4px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .secondary-btn {
+            background: #eef7fb;
+            color: #01579b;
+            border: 1px solid #cde7f2;
+            padding: 14px 26px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .danger-btn {
+            background: linear-gradient(90deg, #c62828, #e53935);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(198, 40, 40, 0.22);
+        }
     </style>
 </head>
 <body>
@@ -499,7 +750,22 @@
         </header>
         
         <div class="form-container">
-            <form id="surveyForm">
+            <form id="surveyForm" novalidate>
+                <div class="insights-panel">
+                    <div class="insight-card"><strong id="completedFieldsCount">0</strong><span>حقول مكتملة</span></div>
+                    <div class="insight-card"><strong id="remainingFieldsCount">0</strong><span>حقول متبقية</span></div>
+                    <div class="insight-card"><strong id="activeSectionName">بيانات الفرضية</strong><span>القسم الأقل اكتمالًا</span></div>
+                </div>
+
+                <div class="section-progress-grid" id="sectionProgressGrid">
+                    <div class="section-progress-card"><h3>بيانات الفرضية</h3><div class="section-progress-meta"><span id="meta-basic">0 / 0</span><span id="pct-basic">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-basic"></div></div></div>
+                    <div class="section-progress-card"><h3>البيانات الأولية</h3><div class="section-progress-meta"><span id="meta-initial">0 / 0</span><span id="pct-initial">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-initial"></div></div></div>
+                    <div class="section-progress-card"><h3>تسجيل الوقت</h3><div class="section-progress-meta"><span id="meta-time">0 / 0</span><span id="pct-time">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-time"></div></div></div>
+                    <div class="section-progress-card"><h3>HEPPU</h3><div class="section-progress-meta"><span id="meta-heppu">0 / 0</span><span id="pct-heppu">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-heppu"></div></div></div>
+                    <div class="section-progress-card"><h3>تحليل الحدث</h3><div class="section-progress-meta"><span id="meta-analysis">0 / 0</span><span id="pct-analysis">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-analysis"></div></div></div>
+                    <div class="section-progress-card"><h3>مؤشر القياس</h3><div class="section-progress-meta"><span id="meta-measurement">0 / 0</span><span id="pct-measurement">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-measurement"></div></div></div>
+                    <div class="section-progress-card"><h3>قسم الرمز</h3><div class="section-progress-meta"><span id="meta-code">0 / 0</span><span id="pct-code">0%</span></div><div class="section-progress-track"><div class="section-progress-fill" id="fill-code"></div></div></div>
+                </div>
                 <!-- قسم بيانات الفرضية (الأول) -->
                 <div class="section-title">
                     <i class="fas fa-database"></i> بيانات الفرضية
@@ -558,6 +824,15 @@
                         <div class="form-group">
                             <label for="evaluator"><i class="fas fa-user-tie"></i> اسم المقيم</label>
                             <input type="text" id="evaluator" name="evaluator" required placeholder="أدخل اسم المقيم">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="evaluatorEmail"><i class="fas fa-envelope"></i> البريد الإلكتروني للمقيم</label>
+                            <input type="email" id="evaluatorEmail" name="evaluatorEmail" required placeholder="name@example.com">
                         </div>
                     </div>
                 </div>
@@ -985,6 +1260,9 @@
                 </div>
                 
                 <div class="btn-container">
+                    <button type="button" class="danger-btn" id="resetFormBtn">
+                        <i class="fas fa-rotate-left"></i> بدء من جديد
+                    </button>
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-paper-plane"></i> إرسال التقييم
                     </button>
@@ -996,6 +1274,35 @@
             <p>© 2025 نظام تقييم الفرضية - تابع لتجمع الشرقية الصحي</p>
             <p> جميع الحقوق محفوظة - تم التطوير بواسطة سعاد مرزا</p>
         </footer>
+    </div>
+
+    <div class="modal-overlay" id="reviewModalOverlay">
+        <div class="review-modal">
+            <h2>مراجعة التقييم قبل الإرسال</h2>
+            <p>راجع التقرير الكامل بالتفاصيل. يمكنك نسخه أو طباعته أو حفظه PDF أو فتحه عبر البريد.</p>
+            <div class="report-preview-wrap">
+                <h3>معاينة التقرير الكامل</h3>
+                <div id="reportPreviewCard" class="report-card"></div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="cancelReviewBtn">رجوع للتعديل</button>
+                <button type="button" class="secondary-btn" id="copyReportBtn"><i class="fas fa-copy"></i> نسخ التقرير</button>
+                <button type="button" class="secondary-btn" id="printReportBtn"><i class="fas fa-print"></i> طباعة / PDF</button>
+                <button type="button" class="secondary-btn" id="openGmailBtn"><i class="fas fa-envelope-open-text"></i> فتح Gmail</button>
+                <button type="button" class="submit-btn" id="confirmSubmitBtn"><i class="fas fa-check"></i> فتح البريد</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="resetModalOverlay">
+        <div class="review-modal">
+            <h2>تأكيد حذف الحقول</h2>
+            <p>سيتم مسح جميع الحقول وإزالة المسودة المحفوظة والعودة إلى بداية النموذج. هل تريد المتابعة؟</p>
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="cancelResetBtn">إلغاء</button>
+                <button type="button" class="danger-btn" id="confirmResetBtn"><i class="fas fa-trash"></i> تأكيد الحذف</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1091,8 +1398,423 @@
             return isValid;
         }
 
+        function convertToMinutes(hourId, minuteId, periodId) {
+            let hour = parseInt(document.getElementById(hourId).value, 10);
+            const minute = parseInt(document.getElementById(minuteId).value, 10);
+            const period = document.getElementById(periodId).value;
+
+            if ([hour, minute].some(Number.isNaN)) return null;
+            if (hour === 12) hour = 0;
+            if (period === 'مساء') hour += 12;
+            return (hour * 60) + minute;
+        }
+
+        function validateTimeSequence() {
+            const actualStart = convertToMinutes('actualStartHour', 'actualStartMinute', 'actualStartPeriod');
+            const contactTime = convertToMinutes('contactHour', 'contactMinute', 'contactPeriod');
+            const endTime = convertToMinutes('endHour', 'endMinute', 'endPeriod');
+
+            if (actualStart === null || contactTime === null || endTime === null) return true;
+
+            if (contactTime < actualStart) {
+                alert('وقت التواصل مع مركز التحكم بالموارد لا يمكن أن يكون قبل وقت بدء الفرضية الفعلي.');
+                return false;
+            }
+
+            if (endTime < actualStart) {
+                alert('وقت انتهاء الفرضية لا يمكن أن يكون قبل وقت بدء الفرضية الفعلي.');
+                return false;
+            }
+
+            if (endTime < contactTime) {
+                alert('وقت انتهاء الفرضية لا يمكن أن يكون قبل وقت التواصل مع مركز التحكم بالموارد.');
+                return false;
+            }
+
+            return true;
+        }
+
         function isElementVisible(element) {
             return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
+        }
+
+        const storageKey = 'hypothesisEvaluationDraftV1';
+        const personalRecipientEmail = 'lerexemail@gmail.com';
+        const sectionConfigs = [
+            { key: 'basic', label: 'بيانات الفرضية', selector: '#year, #month, #day, #weekday, #establishment, #evaluator, #evaluatorEmail, #specialty, #codeType' },
+            { key: 'initial', label: 'البيانات الأولية', selector: 'input[name="trainingType"], input[name="eventType"], #trainingGoals' },
+            { key: 'time', label: 'تسجيل الوقت', selector: '#plannedStartHour, #plannedStartMinute, #plannedStartPeriod, #actualStartHour, #actualStartMinute, #actualStartPeriod, #contactHour, #contactMinute, #contactPeriod, #endHour, #endMinute, #endPeriod' },
+            { key: 'heppu', label: 'HEPPU', selector: 'input[name="heppuActivated"], input[name="effectiveCommunication"], input[name="communicationMethod"], input[name="infoRecordingMethod"]' },
+            { key: 'analysis', label: 'تحليل الحدث', selector: '#eventDescription, #strengths, #improvements, #recommendations, #analystName' },
+            { key: 'measurement', label: 'مؤشر القياس', selector: '#section6CodeType, #generalMeasurementSection [required]' },
+            { key: 'code', label: 'قسم الرمز', selector: '.code-specific-section.show [required]' }
+        ];
+
+        function getFieldsFromSelector(selector) {
+            return Array.from(document.querySelectorAll(selector)).filter(field => {
+                const fieldName = `${field.name || ''} ${field.id || ''}`.toLowerCase();
+                const isNotesField = fieldName.includes('notes') || field.closest('.section-wide-notes');
+                return !isNotesField && isElementVisible(field);
+            });
+        }
+
+        function computeSectionCompletion(selector) {
+            const fields = getFieldsFromSelector(selector);
+            const processedRadioNames = new Set();
+            let total = 0;
+            let completed = 0;
+
+            fields.forEach(field => {
+                if (field.type === 'radio') {
+                    if (processedRadioNames.has(field.name)) return;
+                    processedRadioNames.add(field.name);
+                    total += 1;
+                    const radios = fields.filter(item => item.type === 'radio' && item.name === field.name);
+                    if (radios.some(radio => radio.checked)) completed += 1;
+                    return;
+                }
+
+                if (field.type === 'checkbox') {
+                    if (processedRadioNames.has(field.name)) return;
+                    processedRadioNames.add(field.name);
+                    total += 1;
+                    const checkboxes = fields.filter(item => item.type === 'checkbox' && item.name === field.name);
+                    if (checkboxes.some(checkbox => checkbox.checked)) completed += 1;
+                    return;
+                }
+
+                total += 1;
+                if ((field.value || '').trim() !== '') completed += 1;
+            });
+
+            return {
+                total,
+                completed,
+                percentage: total === 0 ? 0 : Math.round((completed / total) * 100)
+            };
+        }
+
+        function updateSectionProgressCards() {
+            const sectionStats = sectionConfigs.map(config => ({ ...config, ...computeSectionCompletion(config.selector) }));
+
+            sectionStats.forEach(section => {
+                document.getElementById(`meta-${section.key}`).textContent = `${section.completed} / ${section.total}`;
+                document.getElementById(`pct-${section.key}`).textContent = `${section.percentage}%`;
+                document.getElementById(`fill-${section.key}`).style.width = `${section.percentage}%`;
+            });
+
+            const remaining = sectionStats.filter(section => section.total > 0 && section.percentage < 100);
+            document.getElementById('activeSectionName').textContent = remaining.length ? remaining.sort((a, b) => a.percentage - b.percentage)[0].label : 'مكتمل';
+        }
+
+        function saveDraft() {
+            const form = document.getElementById('surveyForm');
+            const data = {};
+
+            Array.from(form.elements).forEach(field => {
+                if (!field.name) return;
+                if (field.type === 'radio') {
+                    if (field.checked) data[field.name] = field.value;
+                    return;
+                }
+                if (field.type === 'checkbox') {
+                    if (!data[field.name]) data[field.name] = [];
+                    if (field.checked) data[field.name].push(field.value);
+                    return;
+                }
+                data[field.name] = field.value;
+            });
+
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        }
+
+        function restoreDraft() {
+            const saved = localStorage.getItem(storageKey);
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+            const form = document.getElementById('surveyForm');
+
+            Array.from(form.elements).forEach(field => {
+                if (!field.name || !(field.name in data)) return;
+                if (field.type === 'radio') {
+                    field.checked = data[field.name] === field.value;
+                    return;
+                }
+                if (field.type === 'checkbox') {
+                    field.checked = Array.isArray(data[field.name]) && data[field.name].includes(field.value);
+                    return;
+                }
+                field.value = data[field.name];
+            });
+
+            document.getElementById('otherTrainingInput').classList.toggle('show', document.getElementById('otherTraining').checked);
+            document.getElementById('otherCommunicationMethodInput').classList.toggle('show', document.getElementById('otherCommunicationMethod').checked);
+            document.getElementById('otherRecordingMethodInput').classList.toggle('show', document.getElementById('otherRecordingMethod').checked);
+        }
+
+        function clearDraft() {
+            localStorage.removeItem(storageKey);
+        }
+
+        function collectFormSummary() {
+            const summary = [];
+            const selectedTraining = document.querySelector('input[name="trainingType"]:checked')?.value || '-';
+            const selectedEvent = document.querySelector('input[name="eventType"]:checked')?.value || '-';
+            const selectedCode = document.getElementById('section6CodeType').value || '-';
+            const { measurementQuestions, selectedCodeQuestions } = getQuestionResultSections();
+
+            summary.push(`التاريخ: ${document.getElementById('year').value}/${document.getElementById('month').value}/${document.getElementById('day').value}`);
+            summary.push(`يوم الأسبوع: ${document.getElementById('weekday').value || '-'}`);
+            summary.push(`اسم المنشأة: ${document.getElementById('establishment').value || '-'}`);
+            summary.push(`اسم المقيم: ${document.getElementById('evaluator').value || '-'}`);
+            summary.push(`بريد المقيم: ${document.getElementById('evaluatorEmail').value || '-'}`);
+            summary.push(`التخصص: ${document.getElementById('specialty').value || '-'}`);
+            summary.push(`نوع التدريب: ${selectedTraining}`);
+            summary.push(`نوع الحدث: ${selectedEvent}`);
+            summary.push(`نوع الرمز: ${selectedCode}`);
+            summary.push(`وقت البدء الفعلي: ${document.getElementById('actualStartHour').value || '--'}:${document.getElementById('actualStartMinute').value || '--'} ${document.getElementById('actualStartPeriod').value || ''}`);
+            summary.push(`وقت انتهاء الفرضية: ${document.getElementById('endHour').value || '--'}:${document.getElementById('endMinute').value || '--'} ${document.getElementById('endPeriod').value || ''}`);
+            summary.push(`تحليل الحدث: ${document.getElementById('eventDescription').value || '-'}`);
+            summary.push(`نقاط القوة: ${document.getElementById('strengths').value || '-'}`);
+            summary.push(`مناطق التحسين: ${document.getElementById('improvements').value || '-'}`);
+            summary.push(`التوصيات: ${document.getElementById('recommendations').value || '-'}`);
+            summary.push(`اسم المحلل: ${document.getElementById('analystName').value || '-'}`);
+            summary.push('');
+            summary.push('مؤشر قياس الفرضيات:');
+            measurementQuestions.forEach(([question, answer]) => summary.push(`- ${question}: ${answer}`));
+            summary.push('');
+            summary.push(`تفاصيل ${selectedCode}:`);
+            selectedCodeQuestions.forEach(([question, answer]) => summary.push(`- ${question}: ${answer}`));
+
+            return summary.join('\n');
+        }
+
+        function buildReportSubject() {
+            return `تقرير تقييم الفرضية - ${document.getElementById('establishment').value || 'بدون منشأة'}`;
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getDetailedReportEntries() {
+            const getChecked = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '-';
+            const getValue = id => document.getElementById(id)?.value?.trim() || '-';
+            const selectedCode = getValue('section6CodeType');
+            const communicationMethods = Array.from(document.querySelectorAll('input[name="communicationMethod"]:checked')).map(item => item.value).join('، ') || '-';
+            const recordingMethods = Array.from(document.querySelectorAll('input[name="infoRecordingMethod"]:checked')).map(item => item.value).join('، ') || '-';
+
+            return [
+                ['التاريخ', `${getValue('year')}/${getValue('month')}/${getValue('day')}`],
+                ['يوم الأسبوع', getValue('weekday')],
+                ['اسم المنشأة', getValue('establishment')],
+                ['اسم المقيم', getValue('evaluator')],
+                ['بريد المقيم', getValue('evaluatorEmail')],
+                ['التخصص', getValue('specialty')],
+                ['نوع التدريب', getChecked('trainingType')],
+                ['نوع الحدث', getChecked('eventType')],
+                ['الأهداف من التدريب', getValue('trainingGoals')],
+                ['نوع الرمز', selectedCode],
+                ['وقت البدء المخطط', `${getValue('plannedStartHour')}:${getValue('plannedStartMinute')} ${getValue('plannedStartPeriod')}`],
+                ['وقت البدء الفعلي', `${getValue('actualStartHour')}:${getValue('actualStartMinute')} ${getValue('actualStartPeriod')}`],
+                ['وقت التواصل', `${getValue('contactHour')}:${getValue('contactMinute')} ${getValue('contactPeriod')}`],
+                ['وقت انتهاء الفرضية', `${getValue('endHour')}:${getValue('endMinute')} ${getValue('endPeriod')}`],
+                ['تفعيل HEPPU', getChecked('heppuActivated')],
+                ['فعالية التواصل', getChecked('effectiveCommunication')],
+                ['طرق التواصل', communicationMethods],
+                ['طرق تسجيل المعلومات', recordingMethods],
+                ['الحدث', getValue('eventDescription')],
+                ['نقاط القوة', getValue('strengths')],
+                ['مناطق التحسين', getValue('improvements')],
+                ['التوصيات', getValue('recommendations')],
+                ['اسم المحلل', getValue('analystName')],
+                ['ملاحظات مؤشر القياس', getValue('generalMeasurementNotes')]
+            ];
+        }
+
+        function getQuestionResultSections() {
+            const collectQuestionResults = (containerSelector) => {
+                const container = document.querySelector(containerSelector);
+                if (!container) return [];
+
+                return Array.from(container.querySelectorAll('.measurement-item, .code-specific-item')).map(item => {
+                    const question = item.querySelector('.measurement-question')?.innerText.replace(/\s+/g, ' ').trim() || '';
+                    const answer = item.querySelector('input[type="radio"]:checked')?.value || 'غير مجاب';
+                    return question ? [question, answer] : null;
+                }).filter(Boolean);
+            };
+
+            const selectedCodeLabel = document.getElementById('section6CodeType').value || '-';
+            const selectedCodeSection = document.querySelector('.code-specific-section.show');
+            const selectedCodeQuestions = selectedCodeSection ? collectQuestionResults(`#${selectedCodeSection.id}`) : [];
+
+            return {
+                measurementQuestions: collectQuestionResults('#generalMeasurementSection'),
+                selectedCodeLabel,
+                selectedCodeQuestions
+            };
+        }
+
+        function buildQuestionFields(fields) {
+            if (!fields.length) {
+                return `<div class="report-field full"><strong>لا توجد بيانات</strong><span>-</span></div>`;
+            }
+
+            return fields.map(([label, value]) => `
+                <div class="report-field full">
+                    <strong>${escapeHtml(label)}</strong>
+                    <span>${escapeHtml(value)}</span>
+                </div>
+            `).join('');
+        }
+
+        function buildReportHtml() {
+            const entries = getDetailedReportEntries();
+            const { measurementQuestions, selectedCodeLabel, selectedCodeQuestions } = getQuestionResultSections();
+            const groups = [
+                { title: 'البيانات الأساسية', labels: ['التاريخ', 'يوم الأسبوع', 'اسم المنشأة', 'اسم المقيم', 'بريد المقيم', 'التخصص', 'نوع التدريب', 'نوع الحدث', 'نوع الرمز'] },
+                { title: 'الأوقات والتشغيل', labels: ['وقت البدء المخطط', 'وقت البدء الفعلي', 'وقت التواصل', 'وقت انتهاء الفرضية', 'تفعيل HEPPU', 'فعالية التواصل', 'طرق التواصل', 'طرق تسجيل المعلومات'] },
+                { title: 'المحتوى التحليلي', labels: ['الأهداف من التدريب', 'الحدث', 'نقاط القوة', 'مناطق التحسين', 'التوصيات', 'اسم المحلل', 'ملاحظات مؤشر القياس'] }
+            ];
+
+            const getFieldClass = (label) => ['الأهداف من التدريب', 'الحدث', 'نقاط القوة', 'مناطق التحسين', 'التوصيات', 'ملاحظات مؤشر القياس', 'طرق التواصل', 'طرق تسجيل المعلومات'].includes(label) ? 'report-field full' : 'report-field';
+
+            const renderFields = (labels) => entries
+                .filter(([label]) => labels.includes(label))
+                .map(([label, value]) => `
+                    <div class="${getFieldClass(label)}">
+                        <strong>${escapeHtml(label)}</strong>
+                        <span>${escapeHtml(value)}</span>
+                    </div>
+                `).join('');
+
+            return `
+                <div class="report-card-header">
+                    <h2>تقرير تقييم الفرضية</h2>
+                    <p>تابع لتجمع الشرقية الصحي</p>
+                </div>
+                ${groups.map(group => `
+                    <div class="report-section">
+                        <h4>${group.title}</h4>
+                        <div class="report-grid">
+                            ${renderFields(group.labels)}
+                        </div>
+                    </div>
+                `).join('')}
+                <div class="report-section">
+                    <h4>مؤشر قياس الفرضيات</h4>
+                    <div class="report-grid">
+                        ${buildQuestionFields(measurementQuestions)}
+                    </div>
+                </div>
+                <div class="report-section">
+                    <h4>تفاصيل ${escapeHtml(selectedCodeLabel)}</h4>
+                    <div class="report-grid">
+                        ${buildQuestionFields(selectedCodeQuestions)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function sendReportViaMailClient() {
+            if (!personalRecipientEmail || personalRecipientEmail === 'YOUR_EMAIL@example.com') {
+                alert('يرجى وضع بريدك الشخصي داخل المتغير personalRecipientEmail في الكود أولاً.');
+                return false;
+            }
+
+            const subject = buildReportSubject();
+            const body = collectFormSummary();
+            const mailtoUrl = `mailto:${encodeURIComponent(personalRecipientEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const mailLink = document.createElement('a');
+            mailLink.href = mailtoUrl;
+            mailLink.style.display = 'none';
+            document.body.appendChild(mailLink);
+            mailLink.click();
+            mailLink.remove();
+            return true;
+        }
+
+        function openGmailCompose() {
+            const subject = buildReportSubject();
+            const body = `تم تجهيز تقرير الفرضية.\nيمكن إرفاق صورة التقرير التي تم تنزيلها من النظام.\n\n${collectFormSummary()}`;
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(personalRecipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        async function copyReportToClipboard() {
+            const reportText = `${buildReportSubject()}\n\n${collectFormSummary()}`;
+            try {
+                await navigator.clipboard.writeText(reportText);
+                alert('تم نسخ التقرير بالتفاصيل.');
+            } catch (error) {
+                const fallbackTextArea = document.createElement('textarea');
+                fallbackTextArea.value = reportText;
+                document.body.appendChild(fallbackTextArea);
+                fallbackTextArea.select();
+                document.execCommand('copy');
+                fallbackTextArea.remove();
+                alert('تم نسخ التقرير.');
+            }
+        }
+
+        function printReportPreview() {
+            const reportHtml = buildReportHtml();
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.left = '-9999px';
+            iframe.style.width = '0';
+            iframe.style.height = '0';
+            iframe.style.border = '0';
+            document.body.appendChild(iframe);
+
+            const doc = iframe.contentWindow.document;
+            doc.open();
+            doc.write(`
+                <!DOCTYPE html>
+                <html lang="ar" dir="rtl">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>${buildReportSubject()}</title>
+                    <style>
+                        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #eef8fc; padding: 24px; }
+                        .report-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid #dceff6; }
+                        .report-card-header { background: linear-gradient(135deg, #0288d1, #039be5); color: white; padding: 24px; }
+                        .report-card-header h2 { margin: 0 0 6px; }
+                        .report-card-header p { margin: 0; color: #e8f7ff; }
+                        .report-section { padding: 18px 20px; border-top: 1px solid #edf5f8; }
+                        .report-section h4 { color: #01579b; background: #e1f2fb; border: 1px solid #b9e1f5; margin-bottom: 14px; padding: 10px 14px; border-radius: 12px; font-weight: 700; }
+                        .report-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+                        .report-field { background: #f8fcfe; border: 1px solid #e3f1f6; border-radius: 14px; padding: 12px 14px; }
+                        .report-field.full { grid-column: 1 / -1; }
+                        .report-field strong { display: block; color: #0288d1; margin-bottom: 6px; }
+                        .report-field span { white-space: pre-wrap; word-break: break-word; line-height: 1.7; color: #263238; }
+                        @media print {
+                            body { background: white; padding: 0; }
+                            .report-card { border: none; border-radius: 0; }
+                            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="report-card">${reportHtml}</div>
+                </body>
+                </html>
+            `);
+            doc.close();
+
+            iframe.onload = function() {
+                setTimeout(() => {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                    setTimeout(() => iframe.remove(), 1500);
+                }, 300);
+            };
         }
 
         function getCompletionStats() {
@@ -1129,7 +1851,7 @@
         }
 
         function updateCompletionProgress() {
-            const { percentage } = getCompletionStats();
+            const { percentage, completed, total } = getCompletionStats();
             const progressBar = document.getElementById('progressBar');
             progressBar.style.width = percentage + '%';
             progressBar.classList.remove('low', 'medium', 'complete');
@@ -1143,6 +1865,9 @@
             }
 
             document.getElementById('progressText').textContent = percentage + '%';
+            document.getElementById('completedFieldsCount').textContent = completed;
+            document.getElementById('remainingFieldsCount').textContent = Math.max(total - completed, 0);
+            updateSectionProgressCards();
             return percentage;
         }
 
@@ -1172,19 +1897,35 @@
             updateCompletionProgress();
         });
 
-        document.getElementById('surveyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!validateAllTimes()) {
-                alert('يرجى تصحيح الأخطاء في قسم تسجيل الوقت');
-                return;
-            }
-            const completionPercentage = updateCompletionProgress();
-            if (completionPercentage < 100) {
-                alert(`لم يكتمل التقييم بعد. نسبة الاكتمال الحالية هي ${completionPercentage}%، ويجب إكمال 100% قبل الإرسال.`);
-                return;
-            }
-            alert('تم إرسال تقييم الفرضية بنجاح!\nالبيانات أرسلت إلى بريدك الإلكتروني');
-            this.reset();
+        function getReviewEntries() {
+            return getDetailedReportEntries();
+        }
+
+        function openReviewModal() {
+            document.getElementById('reportPreviewCard').innerHTML = buildReportHtml();
+            document.getElementById('reviewModalOverlay').classList.add('show');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModalOverlay').classList.remove('show');
+        }
+
+        function openResetModal() {
+            document.getElementById('resetModalOverlay').classList.add('show');
+        }
+
+        function closeResetModal() {
+            document.getElementById('resetModalOverlay').classList.remove('show');
+        }
+
+        function finalizeSubmission() {
+            const mailClientOpened = sendReportViaMailClient();
+            if (!mailClientOpened) return;
+            alert('تم تجهيز التقرير داخل برنامج البريد. إذا لم يفتح شيء، استخدم زر فتح Gmail أو زر نسخ التقرير.');
+        }
+
+        function resetFormToInitialState() {
+            document.getElementById('surveyForm').reset();
             document.getElementById('otherTrainingInput').classList.remove('show');
             document.getElementById('otherCommunicationMethodInput').classList.remove('show');
             document.getElementById('otherRecordingMethodInput').classList.remove('show');
@@ -1192,15 +1933,57 @@
                 const section = document.getElementById(id);
                 if (section) section.classList.remove('show');
             });
+            clearDraft();
             setCurrentDate();
             updateCompletionProgress();
+            closeResetModal();
+        }
+
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!validateAllTimes()) {
+                alert('يرجى تصحيح الأخطاء في قسم تسجيل الوقت');
+                return;
+            }
+            if (!validateTimeSequence()) {
+                return;
+            }
+            const completionPercentage = updateCompletionProgress();
+            if (completionPercentage < 100) {
+                alert(`لم يكتمل التقييم بعد. نسبة الاكتمال الحالية هي ${completionPercentage}%، ويجب إكمال 100% قبل الإرسال.`);
+                return;
+            }
+            openReviewModal();
         });
         
         document.addEventListener('DOMContentLoaded', function() {
             setCurrentDate();
+            restoreDraft();
+            const savedCodeSection = codeSectionMap[document.getElementById('section6CodeType').value];
+            if (savedCodeSection) document.getElementById(savedCodeSection).classList.add('show');
             updateCompletionProgress();
-            document.getElementById('surveyForm').addEventListener('input', updateCompletionProgress);
-            document.getElementById('surveyForm').addEventListener('change', updateCompletionProgress);
+            document.getElementById('surveyForm').addEventListener('input', () => {
+                saveDraft();
+                updateCompletionProgress();
+            });
+            document.getElementById('surveyForm').addEventListener('change', () => {
+                saveDraft();
+                updateCompletionProgress();
+            });
+            document.getElementById('cancelReviewBtn').addEventListener('click', closeReviewModal);
+            document.getElementById('confirmSubmitBtn').addEventListener('click', finalizeSubmission);
+            document.getElementById('openGmailBtn').addEventListener('click', openGmailCompose);
+            document.getElementById('copyReportBtn').addEventListener('click', copyReportToClipboard);
+            document.getElementById('printReportBtn').addEventListener('click', printReportPreview);
+            document.getElementById('resetFormBtn').addEventListener('click', openResetModal);
+            document.getElementById('cancelResetBtn').addEventListener('click', closeResetModal);
+            document.getElementById('confirmResetBtn').addEventListener('click', resetFormToInitialState);
+            document.getElementById('reviewModalOverlay').addEventListener('click', function(e) {
+                if (e.target.id === 'reviewModalOverlay') closeReviewModal();
+            });
+            document.getElementById('resetModalOverlay').addEventListener('click', function(e) {
+                if (e.target.id === 'resetModalOverlay') closeResetModal();
+            });
         });
         
         window.addEventListener('scroll', function() {
