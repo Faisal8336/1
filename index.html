@@ -379,6 +379,10 @@
             color: #555;
         }
 
+        .measurement-options input[type="radio"] {
+            width: auto;
+        }
+
         .section-wide-notes {
             background: #f8fdff;
             border-radius: 12px;
@@ -481,6 +485,11 @@
             header h1 { font-size: 1.8rem; }
             .radio-group, .checkbox-group { flex-direction: column; gap: 10px; }
             .measurement-options { flex-direction: column; gap: 10px; }
+            .measurement-options label {
+                justify-content: flex-start;
+                width: 100%;
+                text-align: right;
+            }
             .submit-btn, .secondary-btn { width: 100%; padding: 16px; }
             .btn-container {
                 position: sticky;
