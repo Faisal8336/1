@@ -655,6 +655,47 @@
             color: #e8f7ff;
         }
 
+        .report-progress-box {
+            margin-top: 16px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            padding: 12px 14px;
+        }
+
+        .report-progress-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .report-progress-track {
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.22);
+            overflow: hidden;
+        }
+
+        .report-progress-fill {
+            height: 100%;
+            border-radius: 999px;
+        }
+
+        .report-progress-fill.low {
+            background: linear-gradient(90deg, #e53935, #ef5350);
+        }
+
+        .report-progress-fill.medium {
+            background: linear-gradient(90deg, #f9a825, #fdd835);
+        }
+
+        .report-progress-fill.complete {
+            background: linear-gradient(90deg, #2e7d32, #43a047);
+        }
+
         .report-section {
             padding: 18px 20px;
             border-top: 1px solid #edf5f8;
@@ -1304,6 +1345,7 @@
             <div class="modal-actions">
                 <button type="button" class="secondary-btn" id="cancelReviewBtn">رجوع للتعديل</button>
                 <button type="button" class="secondary-btn" id="copyReportBtn"><i class="fas fa-copy"></i> نسخ التقرير</button>
+                <button type="button" class="secondary-btn" id="exportExcelBtn"><i class="fas fa-file-excel"></i> تصدير Excel</button>
                 <button type="button" class="secondary-btn" id="printReportBtn"><i class="fas fa-print"></i> طباعة / PDF</button>
                 <button type="button" class="secondary-btn" id="openGmailBtn"><i class="fas fa-envelope-open-text"></i> فتح Gmail</button>
                 <button type="button" class="submit-btn" id="confirmSubmitBtn"><i class="fas fa-check"></i> فتح البريد</button>
@@ -1322,6 +1364,7 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
         function setCurrentDate() {
             const now = new Date();
@@ -1694,6 +1737,8 @@
         function buildReportHtml() {
             const entries = getDetailedReportEntries();
             const { measurementQuestions, selectedCodeLabel, selectedCodeQuestions } = getQuestionResultSections();
+            const { percentage, completed, total } = getCompletionStats();
+            const progressClass = percentage === 100 ? 'complete' : percentage >= 50 ? 'medium' : 'low';
             const groups = [
                 { title: 'البيانات الأساسية', labels: ['التاريخ', 'يوم الأسبوع', 'اسم المنشأة', 'اسم المقيم', 'بريد المقيم', 'التخصص', 'نوع التدريب', 'نوع الحدث', 'نوع الرمز'] },
                 { title: 'الأوقات والتشغيل', labels: ['وقت البدء المخطط', 'وقت البدء الفعلي', 'وقت التواصل', 'وقت انتهاء الفرضية', 'تفعيل HEPPU', 'فعالية التواصل', 'طرق التواصل', 'طرق تسجيل المعلومات'] },
@@ -1715,6 +1760,15 @@
                 <div class="report-card-header">
                     <h2>تقرير تقييم الفرضية</h2>
                     <p>تابع لتجمع الشرقية الصحي</p>
+                    <div class="report-progress-box">
+                        <div class="report-progress-meta">
+                            <span>نسبة اكتمال التقييم</span>
+                            <span>${completed} / ${total} - ${percentage}%</span>
+                        </div>
+                        <div class="report-progress-track">
+                            <div class="report-progress-fill ${progressClass}" style="width:${percentage}%"></div>
+                        </div>
+                    </div>
                 </div>
                 ${groups.map(group => `
                     <div class="report-section">
@@ -1794,6 +1848,13 @@
                         .report-card-header { background: linear-gradient(135deg, #0288d1, #039be5); color: white; padding: 24px; }
                         .report-card-header h2 { margin: 0 0 6px; }
                         .report-card-header p { margin: 0; color: #e8f7ff; }
+                        .report-progress-box { margin-top: 16px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 12px 14px; }
+                        .report-progress-meta { display: flex; justify-content: space-between; gap: 12px; color: #ffffff; font-weight: 600; margin-bottom: 8px; }
+                        .report-progress-track { height: 12px; border-radius: 999px; background: rgba(255,255,255,0.22); overflow: hidden; }
+                        .report-progress-fill { height: 100%; border-radius: 999px; }
+                        .report-progress-fill.low { background: linear-gradient(90deg, #e53935, #ef5350); }
+                        .report-progress-fill.medium { background: linear-gradient(90deg, #f9a825, #fdd835); }
+                        .report-progress-fill.complete { background: linear-gradient(90deg, #2e7d32, #43a047); }
                         .report-section { padding: 18px 20px; border-top: 1px solid #edf5f8; }
                         .report-section h4 { color: #01579b; background: #e1f2fb; border: 1px solid #b9e1f5; margin-bottom: 14px; padding: 10px 14px; border-radius: 12px; font-weight: 700; }
                         .report-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -1848,6 +1909,189 @@
                     setTimeout(() => iframe.remove(), 1500);
                 }, 300);
             };
+        }
+
+        function exportReportToExcel() {
+            if (typeof XLSX === 'undefined') {
+                alert('تعذر تحميل مكتبة Excel. تأكد من الاتصال بالإنترنت ثم أعد المحاولة.');
+                return;
+            }
+
+            const detailedEntries = getDetailedReportEntries();
+            const { measurementQuestions, selectedCodeLabel, selectedCodeQuestions } = getQuestionResultSections();
+            const { percentage, completed, total } = getCompletionStats();
+            const form = document.getElementById('surveyForm');
+
+            const workbook = XLSX.utils.book_new();
+            const workbookOptions = { cellStyles: true };
+
+            const getFieldLabel = (field) => {
+                if (field.id) {
+                    const label = document.querySelector(`label[for="${field.id}"]`);
+                    if (label) return label.innerText.replace(/\s+/g, ' ').trim();
+                }
+                if (field.closest('.measurement-item, .code-specific-item')) {
+                    return field.closest('.measurement-item, .code-specific-item')
+                        .querySelector('.measurement-question')?.innerText.replace(/\s+/g, ' ').trim() || field.name;
+                }
+                if (field.closest('.form-group')) {
+                    const groupLabel = field.closest('.form-group').querySelector('label');
+                    if (groupLabel) return groupLabel.innerText.replace(/\s+/g, ' ').trim();
+                }
+                return field.name || field.id || 'حقل';
+            };
+
+            const appendSectionRows = (rows, title, entries) => {
+                rows.push([title, '']);
+                if (!entries.length) {
+                    rows.push(['لا توجد بيانات', '-']);
+                    rows.push(['', '']);
+                    return;
+                }
+
+                entries.forEach(([label, value]) => {
+                    rows.push([label, value]);
+                });
+                rows.push(['', '']);
+            };
+
+            const getMaxTextLength = (rows, columnIndex) => {
+                return rows.reduce((max, row) => {
+                    const cellValue = row[columnIndex] == null ? '' : String(row[columnIndex]);
+                    return Math.max(max, cellValue.length);
+                }, 0);
+            };
+
+            const styleWorksheet = (sheet, rows, options = {}) => {
+                const maxLabelLength = Math.min(Math.max(getMaxTextLength(rows, 0) + 4, 18), options.maxLabelWidth || 42);
+                const maxValueLength = Math.min(Math.max(getMaxTextLength(rows, 1) + 6, 24), options.maxValueWidth || 80);
+                const range = XLSX.utils.decode_range(sheet['!ref'] || 'A1');
+
+                sheet['!cols'] = [
+                    { wch: maxLabelLength },
+                    { wch: maxValueLength }
+                ];
+
+                for (let rowIndex = range.s.r; rowIndex <= range.e.r; rowIndex += 1) {
+                    for (let colIndex = range.s.c; colIndex <= range.e.c; colIndex += 1) {
+                        const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
+                        const cell = sheet[cellAddress];
+                        if (!cell) continue;
+
+                        cell.s = cell.s || {};
+                        cell.s.alignment = {
+                            horizontal: 'right',
+                            vertical: 'top',
+                            wrapText: true
+                        };
+
+                        if (rowIndex === 0 || (colIndex === 0 && (!rows[rowIndex][1] || rows[rowIndex][1] === ''))) {
+                            cell.s.font = { bold: true };
+                            cell.s.fill = {
+                                fgColor: { rgb: 'D9EEF9' }
+                            };
+                        }
+                    }
+                }
+            };
+
+            const allDataRows = [];
+            const processedNames = new Set();
+
+            Array.from(form.elements).forEach(field => {
+                if (!field.name || processedNames.has(field.name)) return;
+
+                if (field.type === 'radio') {
+                    processedNames.add(field.name);
+                    const radios = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`));
+                    const checked = radios.find(radio => radio.checked);
+                    allDataRows.push([getFieldLabel(field), checked ? checked.value : 'غير مجاب']);
+                    return;
+                }
+
+                if (field.type === 'checkbox') {
+                    processedNames.add(field.name);
+                    const checkboxes = Array.from(form.querySelectorAll(`input[type="checkbox"][name="${field.name}"]`));
+                    const checkedValues = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join('، ');
+                    allDataRows.push([getFieldLabel(field), checkedValues || 'غير محدد']);
+                    return;
+                }
+
+                if (field.tagName === 'BUTTON') return;
+
+                processedNames.add(field.name);
+                allDataRows.push([getFieldLabel(field), field.value?.trim() || '-']);
+            });
+
+            const completeReportRows = [
+                ['تقرير تقييم الفرضية الكامل', ''],
+                ['نسبة اكتمال التقييم', `${percentage}%`],
+                ['عدد الحقول المكتملة', `${completed} من ${total}`],
+                ['', '']
+            ];
+
+            appendSectionRows(completeReportRows, 'البيانات الأساسية والتفصيلية', detailedEntries);
+            appendSectionRows(completeReportRows, 'جميع حقول النموذج', allDataRows);
+            appendSectionRows(completeReportRows, 'مؤشر قياس الفرضيات', measurementQuestions);
+            appendSectionRows(completeReportRows, `تفاصيل ${selectedCodeLabel || 'الرمز المختار'}`, selectedCodeQuestions);
+
+            const summarySheet = XLSX.utils.aoa_to_sheet([
+                ['تقرير تقييم الفرضية'],
+                ['اسم المنشأة', document.getElementById('establishment').value || '-'],
+                ['اسم المقيم', document.getElementById('evaluator').value || '-'],
+                ['بريد المقيم', document.getElementById('evaluatorEmail').value || '-'],
+                ['نوع الرمز', document.getElementById('section6CodeType').value || '-'],
+                ['نسبة اكتمال التقييم', `${percentage}%`],
+                ['عدد الحقول المكتملة', `${completed} من ${total}`]
+            ]);
+
+            const detailedSheet = XLSX.utils.aoa_to_sheet([
+                ['الحقل', 'القيمة'],
+                ...detailedEntries
+            ]);
+
+            const allFieldsSheet = XLSX.utils.aoa_to_sheet([
+                ['جميع حقول النموذج', 'القيمة'],
+                ...allDataRows
+            ]);
+
+            const completeReportSheet = XLSX.utils.aoa_to_sheet(completeReportRows);
+
+            const measurementSheet = XLSX.utils.aoa_to_sheet([
+                ['سؤال مؤشر قياس الفرضيات', 'الإجابة'],
+                ...measurementQuestions
+            ]);
+
+            const codeSheet = XLSX.utils.aoa_to_sheet([
+                ['القسم', selectedCodeLabel],
+                ['سؤال الرمز', 'الإجابة'],
+                ...selectedCodeQuestions
+            ]);
+
+            styleWorksheet(completeReportSheet, completeReportRows, { maxLabelWidth: 44, maxValueWidth: 95 });
+            styleWorksheet(allFieldsSheet, [['جميع حقول النموذج', 'القيمة'], ...allDataRows], { maxLabelWidth: 40, maxValueWidth: 95 });
+            styleWorksheet(detailedSheet, [['الحقل', 'القيمة'], ...detailedEntries], { maxLabelWidth: 34, maxValueWidth: 90 });
+            styleWorksheet(measurementSheet, [['سؤال مؤشر قياس الفرضيات', 'الإجابة'], ...measurementQuestions], { maxLabelWidth: 85, maxValueWidth: 22 });
+            styleWorksheet(codeSheet, [['القسم', selectedCodeLabel], ['سؤال الرمز', 'الإجابة'], ...selectedCodeQuestions], { maxLabelWidth: 85, maxValueWidth: 22 });
+            styleWorksheet(summarySheet, [
+                ['تقرير تقييم الفرضية'],
+                ['اسم المنشأة', document.getElementById('establishment').value || '-'],
+                ['اسم المقيم', document.getElementById('evaluator').value || '-'],
+                ['بريد المقيم', document.getElementById('evaluatorEmail').value || '-'],
+                ['نوع الرمز', document.getElementById('section6CodeType').value || '-'],
+                ['نسبة اكتمال التقييم', `${percentage}%`],
+                ['عدد الحقول المكتملة', `${completed} من ${total}`]
+            ], { maxLabelWidth: 34, maxValueWidth: 40 });
+
+            XLSX.utils.book_append_sheet(workbook, completeReportSheet, 'التقرير الكامل');
+            XLSX.utils.book_append_sheet(workbook, allFieldsSheet, 'كل الحقول');
+            XLSX.utils.book_append_sheet(workbook, detailedSheet, 'البيانات');
+            XLSX.utils.book_append_sheet(workbook, measurementSheet, 'مؤشر القياس');
+            XLSX.utils.book_append_sheet(workbook, codeSheet, 'الرمز المختار');
+            XLSX.utils.book_append_sheet(workbook, summarySheet, 'الملخص');
+
+            const fileName = `taqyeem-alfardiyah-${(document.getElementById('establishment').value || 'report').replace(/[\\/:*?"<>|]/g, '-')}.xlsx`;
+            XLSX.writeFile(workbook, fileName, workbookOptions);
         }
 
         function getCompletionStats() {
@@ -2007,6 +2251,7 @@
             document.getElementById('confirmSubmitBtn').addEventListener('click', finalizeSubmission);
             document.getElementById('openGmailBtn').addEventListener('click', openGmailCompose);
             document.getElementById('copyReportBtn').addEventListener('click', copyReportToClipboard);
+            document.getElementById('exportExcelBtn').addEventListener('click', exportReportToExcel);
             document.getElementById('printReportBtn').addEventListener('click', printReportPreview);
             document.getElementById('resetFormBtn').addEventListener('click', openResetModal);
             document.getElementById('cancelResetBtn').addEventListener('click', closeResetModal);
