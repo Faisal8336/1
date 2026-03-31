@@ -2000,10 +2000,13 @@
 
             Array.from(form.elements).forEach(field => {
                 if (!field.name || processedNames.has(field.name)) return;
+                if (field.tagName === 'BUTTON') return;
+                if (!isElementVisible(field) && !field.closest('.section-wide-notes.show, .code-specific-section.show')) return;
 
                 if (field.type === 'radio') {
                     processedNames.add(field.name);
-                    const radios = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`));
+                    const radios = Array.from(form.querySelectorAll(`input[type="radio"][name="${field.name}"]`))
+                        .filter(radio => isElementVisible(radio) || radio.closest('.code-specific-section.show'));
                     const checked = radios.find(radio => radio.checked);
                     allDataRows.push([getFieldLabel(field), checked ? checked.value : 'غير مجاب']);
                     return;
@@ -2011,13 +2014,12 @@
 
                 if (field.type === 'checkbox') {
                     processedNames.add(field.name);
-                    const checkboxes = Array.from(form.querySelectorAll(`input[type="checkbox"][name="${field.name}"]`));
+                    const checkboxes = Array.from(form.querySelectorAll(`input[type="checkbox"][name="${field.name}"]`))
+                        .filter(checkbox => isElementVisible(checkbox));
                     const checkedValues = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join('، ');
                     allDataRows.push([getFieldLabel(field), checkedValues || 'غير محدد']);
                     return;
                 }
-
-                if (field.tagName === 'BUTTON') return;
 
                 processedNames.add(field.name);
                 allDataRows.push([getFieldLabel(field), field.value?.trim() || '-']);
